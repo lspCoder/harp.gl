@@ -85,11 +85,7 @@ export class ImageCache {
         }
 
         imageCacheItem = {
-            imageItem: {
-                url,
-                image,
-                loaded: false
-            },
+            imageItem: new ImageItem(url, image),
             owners: [owner]
         };
 
@@ -165,7 +161,7 @@ export class ImageCache {
      * @param imageItem - Item to cancel loading.
      */
     private cancelLoading(imageItem: ImageItem) {
-        if (imageItem.loadingPromise !== undefined) {
+        if (imageItem.loading) {
             // Notify that we are cancelling.
             imageItem.cancelled = true;
         }
